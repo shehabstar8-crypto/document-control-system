@@ -69,7 +69,7 @@ Project data ID: ee505976-e729-4771-a0e7-4de2a8a32596
 Region: ap-northeast-2.
 
 ## Current development state
-The owner explicitly restored DEVELOPMENT/open-access mode. Do NOT re-enable mandatory Login/Auth or lock down the DB unless explicitly requested. A temporary System Owner/Auth migration exists in history but is not the current access requirement.
+The application is now PRIVATE and Owner-only. Authorized owner email: shehab.star8@gmail.com. Supabase Auth + database RLS + RPC grants + Storage policies must reject anonymous users and authenticated users whose email is not the owner. Do not restore open-access unless the owner explicitly requests it.
 
 ## Critical rules
 - User enters data in web app, not Excel.
@@ -94,7 +94,7 @@ The owner explicitly restored DEVELOPMENT/open-access mode. Do NOT re-enable man
 7. PDF generation + View/Download/Print.
 8. Central Search, Revision Control, Reports, Audit Log, Users & Security.
 9. Status/workflow + Delay rules.
-10. Production security/auth later, explicitly.
+10. Production security hardening beyond the current Owner-only gate (e.g. broader role model, SSR auth refresh, audit/security review) later, explicitly.
 
 ## Codex workflow
 Before non-trivial changes: read this file; inspect relevant code; inspect Supabase schema/function signatures when DB behavior is involved; make the smallest safe change; run build/tests when possible; report exactly what changed and what was verified. If a request conflicts with this file, ask the owner before changing the rule.
