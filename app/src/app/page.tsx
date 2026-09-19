@@ -3,11 +3,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 
-const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder.supabase.co";
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "placeholder-anon-key";
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 const PROJECT_ID = "ee505976-e729-4771-a0e7-4de2a8a32596";
 const DOC_TYPES = ["WIR", "SHD", "MIR", "MIA", "DS", "DT"];
 const SHD_FORM_MAP:Record<string,{sheet:string;doc:string;date:string;comments:string;pm:string;drawingNoCol:string;drawingNameCol:string;startRow:number;maxRows:number}>={
- GEN:{sheet:"1",doc:"J11",date:"J12",comments:"A32",pm:"N33",drawingNoCol:"B",drawingNameCol:"I",startRow:20,maxRows:10},
+ GEN:{sheet:"1",doc:"J11",date:"J12",comments:"A32",pm:"C49",drawingNoCol:"B",drawingNameCol:"I",startRow:20,maxRows:10},
  IRR:{sheet:"1",doc:"J11",date:"J12",comments:"A29",pm:"N31",drawingNoCol:"B",drawingNameCol:"I",startRow:20,maxRows:9},
  ROD:{sheet:"1",doc:"J11",date:"J12",comments:"A32",pm:"N33",drawingNoCol:"B",drawingNameCol:"I",startRow:20,maxRows:10},
  SEW:{sheet:"1",doc:"J11",date:"J12",comments:"A32",pm:"N33",drawingNoCol:"B",drawingNameCol:"I",startRow:20,maxRows:10},
