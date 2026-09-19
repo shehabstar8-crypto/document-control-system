@@ -4,8 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder.supabase.co";
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "placeholder-anon-key";
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "placeholder-anon-key";
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 const PROJECT_ID = "ee505976-e729-4771-a0e7-4de2a8a32596";
 const DOC_TYPES = ["WIR", "SHD", "MIR", "MIA", "DS", "DT"];
 const SHD_FORM_MAP:Record<string,{sheet:string;doc:string;date:string;comments:string;pm:string;drawingNoCol:string;drawingNameCol:string;startRow:number;maxRows:number}>={
