@@ -16,7 +16,8 @@ export default function Home(){
  const [page,setPage]=useState("Dashboard"),[project,setProject]=useState<P|null>(null),[templates,setTemplates]=useState<T[]>([]),[networks,setNetworks]=useState<N[]>([]),[types,setTypes]=useState<D[]>([]),[busy,setBusy]=useState(false),[msg,setMsg]=useState(""),[preview,setPreview]=useState(""),[created,setCreated]=useState<any>(null),[fields,setFields]=useState<any[]>([]),[fieldValues,setFieldValues]=useState<Record<string,string>>({});
  const [c,setC]=useState<C>({typeId:"",networkId:"",templateId:"",mode:"Next",zone:"",from:"NHC",to:"DAR",sequence:"",revision:"0",existingDocument:"",submissionDate:new Date().toISOString().slice(0,10),attachments:[{drawingNo:"",drawingName:""}],comments:"",projectManager:"م/ أحمد سمير"});
  async function load(){setBusy(true);const {data,error}=await supabase.rpc("get_template_management_data",{p_project_id:PROJECT_ID});if(error)setMsg(error.message);else{const x=data as any;setProject(x.project);setTypes(x.document_types||[]);setNetworks(x.networks||[]);setTemplates(x.templates||[])}setBusy(false)}
- useEffect(()=>{load()},[]);\n useEffect(()=>{(async()=>{if(!c.templateId){setFields([]);setFieldValues({});return}const {data,error}=await supabase.rpc("get_template_fields",{p_template_id:c.templateId});if(error)setMsg(error.message);else{setFields((data||[]) as any[]);setFieldValues({})}})()},[c.templateId]);
+ useEffect(()=>{load()},[]);
+ useEffect(()=>{(async()=>{if(!c.templateId){setFields([]);setFieldValues({});return}const {data,error}=await supabase.rpc("get_template_fields",{p_template_id:c.templateId});if(error)setMsg(error.message);else{setFields((data||[]) as any[]);setFieldValues({})}})()},[c.templateId]);
  const tc=types.find(x=>x.document_type_id===c.typeId)?.type_code||"";
  const nc=networks.find(x=>x.network_id===c.networkId)?.network_code||"";
  const filteredNetworks=useMemo(()=>networks.filter(x=>tc!=="DT"?x.network_code!=="IPC":true),[networks,tc]);
